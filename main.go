@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"os"
 	"strings"
+	"crypto/tls"
 
 	"gopkg.in/alecthomas/kingpin.v2"
 
