@@ -154,8 +154,10 @@ func (r *RancherAPI) makeReq(req *http.Request) (map[string]interface{}, error) 
 	req.Header.Add("Accept", "application/json")
 	req.Header.Add("Content-Type", "application/json")
 	req.SetBasicAuth(r.User, r.Password)
-
-	cli := http.Client{}
+	tr := &http.Transport{
+	    TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+	}
+	cli := &http.Client{Transport:tr}
 	resp, err := cli.Do(req)
 	if err != nil {
 		return nil, err
